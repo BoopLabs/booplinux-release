@@ -1,11 +1,9 @@
-# We enable all display managers by default. Since only one can
-# actually be enabled at the same time the one which is installed
-# first wins
+# We deviate from Fedora upstream and only enable GDM, certain features will be missing if you use another DM.
 
 enable gdm.service
-enable lightdm.service
-enable slim.service
-enable lxdm.service
-enable sddm.service
-enable kdm.service
-enable xdm.service
+#enable lightdm.service
+#enable slim.service
+#enable lxdm.service
+#enable sddm.service
+#enable kdm.service
+#enable xdm.service
