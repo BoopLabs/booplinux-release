@@ -201,10 +201,7 @@ enable lircd.socket
 enable pluto.socket
 
 # https://bugzilla.redhat.com/show_bug.cgi?id=1367932
-# Automatically refresh installed snaps
-enable snapd.refresh.timer
-# Socket activated daemon to manage snaps
-enable snapd.socket
+# We do not intend for Snapd to be used OOB due to the nature of our releases, an installer will be shipped on Boop! Linux with DNF
 
 # Support for dual-GPU systems
 # https://bugzilla.redhat.com/show_bug.cgi?id=1389762
