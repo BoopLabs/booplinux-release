@@ -1,15 +1,15 @@
-%global release_name 	The Big Beta
+%global release_name 	Stouff
 %global dist_version 	35
 
-Summary:	risiOS release files
-Name:		risios-release
+Summary:	Boop! Linux release files
+Name:		booplinux-release
 Version:	%{dist_version}
 Release:	1%{?dist}
 License:	MIT
 Group:		System Environment/Base
 Source0:	LICENSE
 Source1:	README.developers
-Source2:	README.risiOS-Release-Notes
+Source2:	README.BoopLinux-Release-Notes
 Source3:	README.license
 
 Source6:	85-display-manager.preset
@@ -19,9 +19,9 @@ Source9:	90-default-user.preset
 
 BuildArch: 	noarch
 
-Provides: 	risios-release
-Provides: 	risios-release-variant
-Provides: 	risios-release-identity
+Provides: 	booplinux-release
+Provides: 	booplinux-release-variant
+Provides: 	booplinux-release-identity
 
 # We need to Provides: and Conflicts: system release here and in each
 # of the generic-release-$VARIANT subpackages to ensure that only one
@@ -31,20 +31,20 @@ Provides: 	system-release
 Provides: 	system-release(%{dist_version})
 Conflicts:	fedora-release
 Conflicts:	fedora-release.identity
-Requires: 	risios-release-common = %{version}-%{release}
+Requires: 	booplinux-release-common = %{version}-%{release}
 
 %description
-risiOS release files such as yum configs and various /etc/ files that
+Boop! Linux release files such as yum configs and various /etc/ files that
 define the release. This package explicitly is a replacement for the 
 trademarked release package, if you are unable for any reason to abide by the 
 trademark restrictions on that release package.
 
 
 %package common
-Summary: risiOS release files
+Summary: Boop! Linux release files
 
-Requires:   risios-release-variant
-Suggests:   risios-release
+Requires:   booplinux-release-variant
+Suggests:   booplinux-release
 
 Requires:   fedora-repos(%{dist_version})
 Conflicts:  fedora-release-common
@@ -61,7 +61,7 @@ Provides:	system-release-notes = %{version}-%{release}
 Conflicts:	fedora-release-notes
 
 %description notes
-risiOS release notes package. This package explicitly is a replacement
+Boop! Linux release notes package. This package explicitly is a replacement
 for the trademarked release-notes package, if you are unable for any reason
 to abide by the trademark restrictions on that release-notes
 package. Please note that there is no actual useful content here.
@@ -72,7 +72,7 @@ package. Please note that there is no actual useful content here.
 
 %install
 install -d %{buildroot}%{_prefix}/lib
-echo "risiOS release %{version} (%{release_name})" > %{buildroot}%{_prefix}/lib/fedora-release
+echo "Boop! Linux %{version} (%{release_name})" > %{buildroot}%{_prefix}/lib/fedora-release
 echo "cpe:/o:risi:risios:%{version}" > %{buildroot}%{_prefix}/lib/system-release-cpe
 
 # Symlink the -release files
@@ -85,22 +85,22 @@ ln -s fedora-release %{buildroot}%{_sysconfdir}/system-release
 # Create the common os-release file
 install -d $RPM_BUILD_ROOT/usr/lib/os.release.d/
 cat << EOF >>%{buildroot}%{_prefix}/lib/os-release
-NAME=risiOS
+NAME=Boop! Linux
 VERSION="%{dist_version} (%{release_name})"
-ID=risi
+ID=boop
 ID_LIKE=fedora
 VERSION_ID=%{dist_version}
-PRETTY_NAME="risiOS %{dist_version} (%{release_name})"
+PRETTY_NAME="Boop! Linux %{dist_version} (%{release_name})"
 ANSI_COLOR="0;94"
 CPE_NAME="cpe:/o:risi:risios:%{dist_version}"
-HOME_URL="https://risi.io/"
-SUPPORT_URL="https://risi.io/"
-BUG_REPORT_URL="https://risi.io/"
-REDHAT_BUGZILLA_PRODUCT="risiOS"
+HOME_URL="https://booplabs.github.io"
+SUPPORT_URL="https://booplabs.github.io"
+BUG_REPORT_URL="https://booplabs.github.io"
+REDHAT_BUGZILLA_PRODUCT="Boop! Linux Prerelease"
 REDHAT_BUGZILLA_PRODUCT_VERSION=%{bug_version}
-REDHAT_SUPPORT_PRODUCT="risiOS"
+REDHAT_SUPPORT_PRODUCT="Boop! Linux Prelease"
 REDHAT_SUPPORT_PRODUCT_VERSION=%{bug_version}
-PRIVACY_POLICY_URL="https://risi.io/"
+PRIVACY_POLICY_URL="https://booplabs.github.io"
 EOF
 
 # Create the common /etc/issue
@@ -115,7 +115,23 @@ echo "Kernel \r on an \m (\l)" >> %{buildroot}%{_prefix}/lib/issue.net
 ln -s ../usr/lib/issue.net %{buildroot}%{_sysconfdir}/issue.net
 
 # Create os-release and issue files for the different editions here
-# There are no separate editions for risios-release
+NAME=Boop! Linux With DNF
+VERSION="%{dist_version} (%{release_name})"
+ID=boop
+ID_LIKE=fedora risi
+VERSION_ID=%{dist_version}
+PRETTY_NAME="Boop! Linux With DNF%{dist_version} (%{release_name})"
+ANSI_COLOR="0;94"
+CPE_NAME="cpe:/o:boop:booplinux:%{dist_version}"
+HOME_URL="https://booplabs.github.io"
+SUPPORT_URL="https://booplabs.github.io"
+BUG_REPORT_URL="https://booplabs.github.io"
+REDHAT_BUGZILLA_PRODUCT="Boop! Linux With DNF Prerelease"
+REDHAT_BUGZILLA_PRODUCT_VERSION=%{bug_version}
+REDHAT_SUPPORT_PRODUCT="Boop! Linux With DNF Prelease"
+REDHAT_SUPPORT_PRODUCT_VERSION=%{bug_version}
+PRIVACY_POLICY_URL="https://booplabs.github.io"
+EOF
 
 # Create the symlink for /etc/os-release
 ln -s ../usr/lib/os-release $RPM_BUILD_ROOT/etc/os-release
@@ -177,7 +193,7 @@ install -Dm0644 %{SOURCE9} -t $RPM_BUILD_ROOT%{_prefix}/lib/systemd/user-preset/
 
 
 %files notes
-%doc readme/README.risiOS-Release-Notes
+%doc readme/README.BoopLinux-Release-Notes
 
 
 %changelog
